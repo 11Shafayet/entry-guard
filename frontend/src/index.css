@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .input_style {
+    @apply bg-transparent border-0 border-b text-primary p-3 pr-8 focus:outline-none focus:border-b-primary w-full;
+  }
+}
+
+.shadow_light {
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.04);
+}

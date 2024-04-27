@@ -1,18 +1,43 @@
 import { FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import SignInImage from '/assets/sign-in.png';
 import EyeOpen from '/assets/eye-open.png';
 import EyeClose from '/assets/eye-close.png';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passEye, setPassEye] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(password, email);
+    if (email && password) {
+      const response = await fetch('http://localhost:1111/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', JSON.stringify(data.token));
+        toast.success(data.msg);
+        navigate('/user-profile');
+      } else {
+        toast.warn(data.msg);
+      }
+    } else {
+      toast.warn('All Fields are required!');
+    }
   };
 
   return (
@@ -79,7 +104,7 @@ const SignIn = () => {
 
                 {/* link to sign up page */}
                 <Link
-                  to="/sign-up"
+                  to="/"
                   className="flex justify-center items-center bg-white border-2 border-primary hover:border-secondary py-4 text-xl font-semibold w-full hover:text-white rounded-2xl hover:bg-secondary duration-300 "
                 >
                   Sign Up

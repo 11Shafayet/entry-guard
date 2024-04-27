@@ -22,6 +22,7 @@ To get started with the backend code, follow these steps:
 2. Run `npm i` to install dependencies.
 3. Set up the `.env` file in the root folder. The `.env` file should contain the following code:
 
+MONGODB_URL = 'your MongoDB url'
 SMTP_MAIL = "your_gmail"
 SMTP_PASSWORD = "your_password"
 SMTP_HOST = "smtp.gmail.com"

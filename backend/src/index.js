@@ -1,5 +1,4 @@
 require('dotenv').config();
-import { Request, Response } from 'express';
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -47,7 +46,7 @@ async function run() {
 
 run().catch(console.dir);
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req, res) => {
   res.send('Entry Guard server is running');
 });
 

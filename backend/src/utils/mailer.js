@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-import { SentMessageInfo } from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -13,7 +12,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendMail = async (email: string, subject: string, content: string) => {
+const sendMail = async (email, subject, content) => {
   try {
     let mailOptions = {
       from: process.env.SMTP_MAIL,
@@ -22,15 +21,12 @@ const sendMail = async (email: string, subject: string, content: string) => {
       html: content,
     };
 
-    transporter.sendMail(
-      mailOptions,
-      (error: Error | null, info: SentMessageInfo) => {
-        if (error) {
-          console.log(error);
-        }
-        console.log('Mail sent ', info.messageId);
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
       }
-    );
+      console.log('Mail sent ', info.messageId);
+    });
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);

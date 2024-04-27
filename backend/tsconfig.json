@@ -8,6 +8,6 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist"
   },
-  "include": ["src/**/*.ts", "src/middlewares/auth.js", "src/index.js"],
+  "include": ["src/**/*.ts", "src/middlewares/auth.js", "src/index.js", "src/utils/mailer.js", "src/utils/utils.js"],
   "exclude": ["node_modules"]
 }

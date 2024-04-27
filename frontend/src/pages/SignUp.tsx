@@ -69,16 +69,19 @@ const SignUp = () => {
       contactMode
     ) {
       if (password === conPassword) {
-        const response = await fetch('http://localhost:1111/user/otp', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            firstname: firstName,
-          }),
-        });
+        const response = await fetch(
+          'https://entry-guard-backend.vercel.app/user/otp',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email,
+              firstname: firstName,
+            }),
+          }
+        );
 
         const data = await response.json();
         const otp = data.otp;
@@ -103,7 +106,7 @@ const SignUp = () => {
 
     if (otp && otp.length === 6) {
       if (otp === serverOtp) {
-        const response = await fetch('http://localhost:1111/user/', {
+        const response = await fetch('https://entry-guard-backend.vercel.app/user/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

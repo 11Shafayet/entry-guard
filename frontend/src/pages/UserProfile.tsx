@@ -36,7 +36,7 @@ const UserProfile = () => {
     if (currentPassword && newPassword) {
       if (currentPassword !== newPassword) {
         const response = await fetch(
-          'http://localhost:1111/user/change-password',
+          'https://entry-guard-backend.vercel.app/user/change-password',
           {
             method: 'POST',
             headers: {

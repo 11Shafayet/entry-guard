@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Select, { StylesConfig } from 'react-select';
+import Select, { StylesConfig, ValueContainerProps } from 'react-select';
 
 import SignUpImage from '/assets/sign-up.png';
 import EyeOpen from '/assets/eye-open.png';
@@ -8,10 +8,7 @@ import EyeClose from '/assets/eye-close.png';
 import { toast } from 'react-toastify';
 import { FaArrowLeft } from 'react-icons/fa';
 
-const contactModeOptions = [
-  { value: 'email', label: 'Email' },
-  { value: 'phone', label: 'Phone' },
-];
+const contactModeOptions = ['Email', 'Phone'];
 
 const selectStyles: StylesConfig = {
   control: (styles, { isFocused }) => ({
@@ -29,7 +26,7 @@ const selectStyles: StylesConfig = {
   option: (styles, { isSelected }) => ({
     ...styles,
     backgroundColor: 'white',
-    color: isSelected && '#3A244A',
+    color: isSelected ? '#3A244A' : '#000',
     '&:hover': {
       backgroundColor: '#3A244A',
       color: 'white',
@@ -42,7 +39,7 @@ const selectStyles: StylesConfig = {
   }),
 };
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -221,15 +218,19 @@ const SignUp = () => {
                   </div>
 
                   {/* contact mode */}
-                  <Select
-                    className="basic-single"
-                    classNamePrefix="select"
-                    placeholder="Contact Mode"
-                    name="contact-mode"
-                    options={contactModeOptions}
-                    styles={selectStyles}
-                    onChange={(e) => setContactMode(e.value)}
-                  />
+
+                  <select
+                    className="input_style"
+                    value={contactMode}
+                    onChange={(e) => setContactMode(e.target.value)}
+                  >
+                    <option defaultChecked hidden>
+                      Contact Mode
+                    </option>
+                    {contactModeOptions.map((item, i) => (
+                      <option key={i}>{item}</option>
+                    ))}
+                  </select>
 
                   {/* email */}
                   <input

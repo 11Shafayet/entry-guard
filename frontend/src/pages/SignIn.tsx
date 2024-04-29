@@ -16,7 +16,7 @@ const SignIn = () => {
     e.preventDefault();
     if (email && password) {
       const response = await fetch(
-        'https://entry-guard-backend.vercel.app/user/login',
+        'https://entry-guard.onrender.com/user/login',
         {
           method: 'POST',
           headers: {

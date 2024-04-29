@@ -70,7 +70,7 @@ const SignUp = () => {
     ) {
       if (password === conPassword) {
         const response = await fetch(
-          'https://entry-guard-backend.vercel.app/user/otp',
+          'https://entry-guard.onrender.com/user/otp',
           {
             method: 'POST',
             headers: {
@@ -106,7 +106,7 @@ const SignUp = () => {
 
     if (otp && otp.length === 6) {
       if (otp === serverOtp) {
-        const response = await fetch('https://entry-guard-backend.vercel.app/user/', {
+        const response = await fetch('https://entry-guard.onrender.com/user/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

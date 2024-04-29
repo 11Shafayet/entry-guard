@@ -36,7 +36,7 @@ const UserProfile = () => {
     if (currentPassword && newPassword) {
       if (currentPassword !== newPassword) {
         const response = await fetch(
-          'https://entry-guard-backend.vercel.app/user/change-password',
+          'https://entry-guard.onrender.com/user/change-password',
           {
             method: 'POST',
             headers: {
@@ -53,6 +53,8 @@ const UserProfile = () => {
         const data = await response.json();
 
         if (response.ok) {
+          setCurrentPassword('');
+          setNewPassword('');
           toast.success('Password changed successfully!');
         } else {
           toast.error(data?.msg);

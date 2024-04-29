@@ -1,6 +1,5 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Select, { StylesConfig, ValueContainerProps } from 'react-select';
 
 import SignUpImage from '/assets/sign-up.png';
 import EyeOpen from '/assets/eye-open.png';
@@ -9,35 +8,6 @@ import { toast } from 'react-toastify';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const contactModeOptions = ['Email', 'Phone'];
-
-const selectStyles: StylesConfig = {
-  control: (styles, { isFocused }) => ({
-    ...styles,
-    border: '0',
-    borderRadius: '0',
-    borderBottom: `1px solid ${isFocused ? '#3A244A' : '#e5e7eb'}`,
-    transition: 'border-color 0.2s ease',
-    paddingLeft: '4px',
-    boxShadow: 'none',
-    '&:hover': {
-      borderBottom: `1px solid #3A244A`,
-    },
-  }),
-  option: (styles, { isSelected }) => ({
-    ...styles,
-    backgroundColor: 'white',
-    color: isSelected ? '#3A244A' : '#000',
-    '&:hover': {
-      backgroundColor: '#3A244A',
-      color: 'white',
-    },
-  }),
-  menu: (styles) => ({
-    ...styles,
-    borderRadius: '10px',
-    overflow: 'hidden',
-  }),
-};
 
 const SignUp: React.FC = () => {
   const [firstName, setFirstName] = useState<string>('');

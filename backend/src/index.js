@@ -12,7 +12,6 @@ app.use(
       'https://entry-guard.vercel.app',
       'https://sr-entry-guard.vercel.app',
     ],
-    methods: ['POST', 'GET'],
     credentials: true,
   })
 );
